@@ -27,7 +27,7 @@ class Layout extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('ZScedule'),
+          title: const Text('ZSchedule'),
           bottom: const TabBar(
             tabs: [
               Tab(text: 'Bookings'), 
