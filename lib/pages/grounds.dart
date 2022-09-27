@@ -109,7 +109,10 @@ class GroundCard extends StatelessWidget {
                     children: [
                       const Spacer(),
                       TextButton(
-                        child: const Text("Show Details"),
+                        child: const Padding(
+                          padding: EdgeInsets.all(18),
+                          child: Text("Show Details"),
+                        ),
                         onPressed: () {
                           showDialog(context: context, builder: buildGroundDetailsDialog);
                         }, 
