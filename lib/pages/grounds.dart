@@ -28,18 +28,99 @@ class GroundCard extends StatelessWidget {
 
   const GroundCard(this.ground, {super.key});
 
+  Widget buildGroundDetailsDialog(BuildContext context) {
+    Map<String, List<String>> items = {
+      "Equipments": ground.equipments
+    };
+
+    return AlertDialog(
+      title: const Text("Ground Details"),
+      content: SizedBox(
+        width: double.maxFinite,
+        height: 200,
+        child: ListView.builder(
+          itemCount: items.length,
+          itemBuilder: (context, i) {
+            String sectionName = items.keys.elementAt(i);
+            Iterable<Widget> sectionItems = items.values.elementAt(i)
+              .map((item) => 
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4),
+                  child: Text(
+                    item,
+                    style: Theme.of(context).textTheme.bodyLarge
+                  ),
+                )
+              );
+
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: Text(
+                    sectionName,
+                    style: Theme.of(context).textTheme.titleLarge
+                  ),
+                ),
+                ...sectionItems
+              ]
+            );
+          }
+        ),
+      ),
+      actions: [
+        TextButton(
+          child: const Text("Close"),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
-        child: Row(children: [
-          CircleAvatar(
-            radius: 50,
-            backgroundImage: AssetImage(ground.img),
-          ),
-          Expanded(child: Column(children: [Text(ground.name)]))
-        ]),
+        child: Row(
+          children: [
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage(ground.img),
+            ),
+            const SizedBox(width: 18),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    ground.name,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  Text(
+                    "Incharge: ${ground.incharge}",
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  Row(
+                    children: [
+                      const Spacer(),
+                      TextButton(
+                        child: const Text("Show Details"),
+                        onPressed: () {
+                          showDialog(context: context, builder: buildGroundDetailsDialog);
+                        }, 
+                      )
+                    ],
+                  )
+                ]
+              )
+            )
+          ]
+        ),
       ),
     );
   }
