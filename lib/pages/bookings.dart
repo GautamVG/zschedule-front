@@ -12,12 +12,12 @@ final bookedSlots = <Slot>[
       startTime: DateTime.now(),
       endTime: DateTime.now().add(const Duration(hours: 2)),
       booker: "Harshal Dave",
-      ground: Ground("Gokuldham")),
+      ground: Ground("Ground 1")),
   Slot(
       startTime: DateTime.now().add(const Duration(hours: 4)),
       endTime: DateTime.now().add(const Duration(hours: 1)),
       booker: "Harshal Dave",
-      ground: Ground("Gokuldham")),
+      ground: Ground("Ground 2")),
 ];
 
 class BookingsPage extends StatelessWidget {
@@ -87,37 +87,56 @@ class BookedSlot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: Theme.of(context).primaryColorLight,
-        ),
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: Theme.of(context).primaryColorLight,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Wrap(
+            spacing: 8,
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
-              Wrap(
-                  spacing: 8,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    const Icon(PhosphorIcons.clock),
-                    Column(children: [
-                      Text(
-                        "${slot.startTime.hour}:${slot.startTime.minute}",
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                      Text(slot.startTime.hour > 12 ? 'PM' : 'AM'),
-                    ]),
-                    Column(children: [
-                      Text(
-                        "${slot.endTime.hour}:${slot.endTime.minute}",
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                      Text(slot.endTime.hour > 12 ? 'PM' : 'AM'),
-                    ]),
-                  ]),
-              Text(slot.booker),
-              Text(slot.ground.name)
-            ]));
+              const Icon(PhosphorIcons.clock),
+              Column(children: [
+                Text(
+                  "${slot.startTime.hour}:${slot.startTime.minute}",
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                Text(slot.startTime.hour > 12 ? 'PM' : 'AM'),
+              ]),
+              Column(
+                children: [
+                  Text(
+                    "${slot.endTime.hour}:${slot.endTime.minute}",
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  Text(slot.endTime.hour > 12 ? 'PM' : 'AM'),
+                ]
+              ),
+            ]
+          ),
+          Column(
+            children: [
+              Text(
+                "Booked by",
+                style: Theme.of(context).textTheme.caption,
+              ),
+              Text(
+                slot.booker,
+                style: Theme.of(context).textTheme.labelLarge
+              ),
+            ]
+          ),
+          Text(
+            slot.ground.name,
+            style: Theme.of(context).textTheme.labelSmall
+          )
+        ]
+      )
+    );
   }
 }
