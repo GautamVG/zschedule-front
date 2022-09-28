@@ -28,6 +28,12 @@ class Layout extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('ZSchedule'),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(PhosphorIcons.signOut)
+            )
+          ],
           bottom: const TabBar(
             tabs: [
               Tab(text: 'Bookings'), 
@@ -86,7 +92,7 @@ class _SlotBookingDialogState extends State<SlotBookingDialog> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              DropdownButtonFormField(
+               DropdownButtonFormField(
                 decoration: const InputDecoration(
                   labelText: "Pick a ground",
                   icon: Icon(PhosphorIcons.mapPin)
