@@ -18,6 +18,7 @@ class GroundsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       padding: const EdgeInsets.all(8),
+      itemCount: grounds.length,
       itemBuilder: (context, i) => GroundCard(grounds[i]),
     );
   }
