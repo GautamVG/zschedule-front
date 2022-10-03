@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import 'package:zschedule/pages/grounds.dart';
-import 'pages/bookings.dart';
+import 'bookings.dart';
 
-import 'models/ground.dart';
+import '../models/ground.dart';
 
 final grounds = <Ground>[
   Ground("Ground 1"),
@@ -14,8 +14,10 @@ final grounds = <Ground>[
   Ground("Ground 5"),
 ];
 
-class Layout extends StatelessWidget {
-  const Layout({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  static const routeName = '/';
 
   Widget buildSlotBookingDialog(BuildContext context) {
     return const SlotBookingDialog();
